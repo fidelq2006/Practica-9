@@ -45,15 +45,24 @@ Por otra parte, la interoperabilidad de datos en redes con sistemas heterogéneo
 
 ---
 
-## 3. DESARROLLO Y PROCEDIMIENTO
+## 3. PROCEDIMIENTO
 
-### 3.1 Procedimiento: Parte 1 - Servidor Web Apache
+### Servidor web
 
-A continuación se detallan los comandos de consola necesarios para llevar a cabo la instalación, inicialización y testeo inicial del servidor web en la máquina virtual con Ubuntu.
+#### 1. Instalación de httpd
 
-#### Paso 1: Instalación de Apache2
-Actualice el índice de los repositorios locales e instale el paquete correspondiente al servidor web mediante los siguientes comandos:
+Instalación de Apache2 y configuración inicial del Firewall (UFW):
 
 ```bash
-sudo apt update
 sudo apt install apache2
+sudo ufw status
+sudo ufw allow 'Apache'
+
+sudo systemctl status apache2
+<img width="460" height="394" alt="image" src="https://github.com/user-attachments/assets/99229f8b-cc05-4982-92e6-123d91378185" />
+
+#### 2. Dirigirse hacia el navegador y colocar localhost
+
+Ingresar a la parte del navegador para ver el apartado del localhost en Firefox:
+<img width="659" height="404" alt="image" src="https://github.com/user-attachments/assets/195ff0fd-6bd3-4c12-aff5-d482cd480d31" />
+
