@@ -66,6 +66,7 @@ sudo systemctl status apache2
 ```
 
 <img width="460" height="394" alt="image" src="https://github.com/user-attachments/assets/193a9e03-d67d-4946-bd03-8a0c3a4be1fa" />
+
 Figura 1
 
 #### 2. Dirigirse hacia el navegador y colocar localhost
@@ -73,6 +74,7 @@ Figura 1
 Ingresar al navegador y escribir **localhost** en la barra de direcciones para comprobar que Apache está funcionando correctamente.
 
 <img width="659" height="404" alt="image" src="https://github.com/user-attachments/assets/7444fdba-db9c-4551-9671-69807db6a784" />
+
 Figura 2
 
 #### 3. Descargar la página web y colocarla como `index.html`
@@ -87,6 +89,7 @@ sudo mv index.html.1 index.html
 ```
 
 <img width="638" height="218" alt="image" src="https://github.com/user-attachments/assets/4765e565-f2fa-46fc-819b-6e3eb0b82be0" />
+
 Figura 3
 
 #### 4. Verificar la página web en el navegador
@@ -98,6 +101,7 @@ http://localhost
 ```
 
 <img width="886" height="498" alt="image" src="https://github.com/user-attachments/assets/9074092b-586e-4ffb-b5bc-0e76b858dfb2" />
+
 Figura 4
 
 #### 5. Acceder al servidor web desde la máquina física Windows
@@ -105,6 +109,7 @@ Figura 4
 Desde la máquina física con Windows, abrir un navegador web e ingresar la dirección IP del servidor para verificar que el sitio web sea accesible desde otro equipo.
 
 <img width="886" height="498" alt="image" src="https://github.com/user-attachments/assets/36e2d617-239f-4cda-a3d8-bdcbf6d97cb3" />
+
 Figura 5
  
 ---
@@ -124,17 +129,20 @@ sudo systemctl status nmbd
 ```
 
 <img width="875" height="492" alt="image" src="https://github.com/user-attachments/assets/b69e101b-ab00-4ce3-94e2-bc90dc201f62" />
+
 Figura 6
 
 A continuación, se instaló el paquete samba mediante sudo apt-get install samba. Durante la instalación se descargaron e instalaron las dependencias necesarias para el funcionamiento del servicio.
 
 
 <img width="875" height="467" alt="image" src="https://github.com/user-attachments/assets/966e7f07-f522-4cc3-a332-41f2805d1ab3" />
+
 Figura 7
 
 Finalizada la instalación, se verificó que el daemon nmbd se encontrara activo con el comando sudo systemctl status nmbd. La salida confirma el estado active (running) del servicio, lo que indica que Samba quedó correctamente instalado y en ejecución.
 
 <img width="875" height="464" alt="image" src="https://github.com/user-attachments/assets/4a105a74-63ed-4f54-aec4-7d637d43ef19" />
+
 Figura 8
 
 #### 2. Configuración de Samba
@@ -149,16 +157,19 @@ sudo vi /etc/samba/smb.conf
 Se creó el directorio /samba, que sirve como base para el recurso compartido, mediante sudo mkdir /samba
 
 <img width="451" height="95" alt="image" src="https://github.com/user-attachments/assets/f14d864b-b2fe-4090-8b16-3fc2b33c4012" />
+
 Figura 9
 
 Posteriormente se editó el archivo de configuración /etc/samba/smb.conf con sudo vi /etc/samba/smb.conf, agregando al final del fichero el bloque correspondiente al nuevo recurso compartido [samba-share], especificando el comentario, la ruta (path = /samba), permisos de escritura (read only = no) y visibilidad del recurso (browsable = yes).
 
 <img width="875" height="331" alt="image" src="https://github.com/user-attachments/assets/496f885d-af47-4651-8033-789808b75aba" />
+
 Figura 10
 
 Después de configurar el archivo smb.conf, se creó el usuario del sistema samba (sudo useradd samba) y se estableció su contraseña de acceso a Samba con sudo smbpasswd -a samba. Luego se creó el subdirectorio /samba/public, se ajustó su propietario a nobody:nogroup, se otorgaron permisos de lectura/escritura/ejecución completos (chmod 0777) y se asignó el grupo sambashare. Finalmente se reinició el servicio con sudo systemctl restart smbd.service y se deshabilitó temporalmente el firewall con sudo ufw disable para permitir el acceso desde la red.
 
 <img width="777" height="531" alt="image" src="https://github.com/user-attachments/assets/9d6ca6aa-e297-44fb-ae66-acb55120381f" />
+
 Figura 11
 
 #### 3. Verificar el funcionamiento
@@ -173,6 +184,7 @@ Contraseña: <contraseña_samba>
 Desde el explorador de archivos (Nautilus) de la propia máquina virtual se accedió a la red local y se seleccionó el recurso compartido samba-share. El sistema solicitó las credenciales de autenticación, indicándose el usuario samba y la contraseña configurada previamente con smbpasswd, confirmando así que el recurso quedó correctamente publicado.
 
 <img width="750" height="494" alt="image" src="https://github.com/user-attachments/assets/a66aa957-954d-49d4-a37b-bd776547ae1f" />
+
 Figura 12
 
 #### 4. Conectarse remotamente al recurso compartido
@@ -186,38 +198,45 @@ Desde la máquina con Windows, acceder al recurso compartido de Samba utilizando
 - Ingresar el **usuario** y la **contraseña** de Samba.
   
   <img width="750" height="478" alt="image" src="https://github.com/user-attachments/assets/acaf12b9-aaae-442e-acd2-e3959fc4631c" />
-   Figura 13
+
+  Figura 13
   
 - Copiar un archivo desde Windows hacia la carpeta compartida de la máquina virtual Ubuntu y verificar que se haya guardado correctamente.
 
    <img width="750" height="473" alt="image" src="https://github.com/user-attachments/assets/b436e4da-c71b-49f0-a130-3601f7fed45f" />
-    Figura 14
+
+  Figura 14
   
 - Copiar un archivo en la carpeta compartida de Ubuntu (**public**) y comprobar que sea visible desde Windows.
 
    <img width="875" height="464" alt="image" src="https://github.com/user-attachments/assets/84391be5-d443-40d3-b838-7e9d4864378c" />
-    Figura 15
+
+   Figura 15
 
 #### 5. Prueba de transferencia de archivos
 
 Para comprobar la transferencia de archivos en el sentido Ubuntu → Windows, se creó un documento de texto (Practica 9 Samba.odt) directamente en la máquina virtual, guardándolo dentro de la carpeta compartida /samba/public mediante LibreOffice Writer.
 
 <img width="875" height="464" alt="image" src="https://github.com/user-attachments/assets/454d0156-6bcf-4661-929a-85ec396a0e11" />
+
 Figura 16
 
 Al revisar la carpeta public del recurso samba-share desde el explorador de Windows, el archivo creado en la máquina virtual apareció disponible de forma inmediata, confirmando la correcta sincronización del recurso compartido.
 
 <img width="750" height="478" alt="image" src="https://github.com/user-attachments/assets/6efdd272-b18b-4829-a105-500cf6edb5ef" />
+
 Figura 17
 
 Para comprobar la transferencia en el sentido inverso (Windows → Ubuntu), se copió el archivo Prac9SO_2026A.pdf desde el equipo físico hacia la misma carpeta compartida public.
 
 <img width="750" height="478" alt="image" src="https://github.com/user-attachments/assets/ff6359d9-1c90-43fe-9539-66cd95e911e3" />
+
 Figura 18
 
 Finalmente, desde el gestor de archivos de la máquina virtual Ubuntu se verificó que el archivo PDF copiado desde Windows se encontraba disponible dentro de /samba/public, junto con el archivo creado previamente en la propia máquina virtual, confirmando la transferencia de archivos en ambos sentidos.
 
 <img width="875" height="464" alt="image" src="https://github.com/user-attachments/assets/ea7b136b-e607-48db-9ce3-1b407c790875" />
+
 Figura 19
 
 ## 4. Conclusiones y Recomendaciones
