@@ -61,8 +61,10 @@ sudo ufw allow 'Apache'
 sudo systemctl status apache2
 <img width="460" height="394" alt="image" src="https://github.com/user-attachments/assets/99229f8b-cc05-4982-92e6-123d91378185" />
 
+
 #### 2. Dirigirse hacia el navegador y colocar localhost
 
 Ingresar a la parte del navegador para ver el apartado del localhost en Firefox:
+
 <img width="659" height="404" alt="image" src="https://github.com/user-attachments/assets/195ff0fd-6bd3-4c12-aff5-d482cd480d31" />
 
