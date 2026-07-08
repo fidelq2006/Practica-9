@@ -186,8 +186,11 @@ Finalmente, desde el gestor de archivos de la máquina virtual Ubuntu se verific
 ## 4. Conclusiones y Recomendaciones
 
 •	Samba permitió establecer una interoperabilidad efectiva entre el servidor GNU/Linux (Ubuntu Server) y el cliente Windows, cumpliendo su función principal de compartir archivos entre sistemas operativos distintos mediante el protocolo SMB.
+
 •	La correcta configuración del archivo smb.conf, junto con los permisos del sistema de archivos (chown, chmod, chgrp) y la creación de un usuario Samba independiente, resultó indispensable para que el recurso compartido fuera accesible tanto en lectura como en escritura.
+
 •	Se recomienda, para entornos reales, evitar deshabilitar el firewall por completo y en su lugar habilitar de forma selectiva los puertos requeridos por Samba, tal como se describió en la sección 4, con el fin de mantener un nivel adecuado de seguridad en el servidor.
+
 •	La prueba de transferencia bidireccional de archivos confirmó el correcto funcionamiento del recurso compartido, validando tanto la configuración del servidor como la conectividad de red entre la máquina virtual y la máquina física.
 
 ## 5. Referencias
